@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bmi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="up">
+        <div class='top_wrap'>
+            <div>
+                <img id="up_bmi_img" src="img/BMICLogo.png">
+            </div>
+            <div class="up_center">
+                <div>
+                    <p class="up_text" >身高 cm</p>
+                    <input type="text" placeholder="請輸入身高" id="input_height" class="up_input_text">
+                </div>
+                <div>
+                    <p class="up_text" >體重 kg</p>
+                    <input type="text" placeholder="請輸入體重" id="input_weight" class="up_input_text" >
+                </div> 
+            </div>
+            <div>
+                <div>
+                    <div class="div_submit_button">
+                        <input type="button" value="看結果" class="submit_button">
+                        <div class="submit_button_icon"></div>
+                        <span class="submit_button_innertext">BMI</span>
+                    </div>
+                    <span class="span_text"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="median_content">
+            <div>
+                <p>BMI 紀錄</p>
+            </div>
+            <div>
+                <ul id="content-box">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <img class="bottom_bmi_img" src="img/BMICLogo.png">
+    </div>
+    
+    <script src="../jquery.js"></script>
+    <script src="js/bmi.js"></script>
+    
+</body>
+</html>

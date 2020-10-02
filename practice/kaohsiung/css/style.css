@@ -1,0 +1,295 @@
+*{
+    padding: 0;
+    margin:0;
+}
+
+.nvm{
+    margin:0 auto;
+    /* display:flex;
+    justify-content:space-between;
+    flex-direction:column; */
+    background-image: url('../img/the-urban-landscape-1698285.png');
+    background-position:top center;
+    background-size:1024px 380px;
+    background-repeat:no-repeat;
+    width:1024px;
+    height:513px;
+    display:flex;
+    justify-content:space-between;
+    flex-direction:column;
+}
+
+.nvm_select{
+    width:425px;
+    height:48px;
+    background: rgba(255,255,255,0.70);
+    border: 3px solid #FFFFFF;
+    border-radius: 3px;
+    font-size: 18px;
+    color: #000000;
+}
+
+.dotted_line{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    margin-bottom:20px;
+}
+
+.dotted_line>div{
+    margin-bottom:-15px;
+    width:24px;
+    height:24px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius: 50%;
+    border:  2px solid #559AC8;
+    z-index: 100;
+}
+
+.dotted_line>hr{
+    width: 88%;
+    border: 1px dashed #559AC8;
+}
+
+.nvm_popular_area{
+    display:flex;
+    justify-content:space-between;
+    flex-direction:column;
+    width: 748px;
+    height: 72px;
+    padding:20px 26px;
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.20);
+    border-radius: 5px;
+}
+
+.nvm_text{
+    font-size: 40px;
+    color: #FFFFFF;
+    letter-spacing: 3.89px;
+}
+
+.nvm_area{
+    width: 76%;
+    height: 38%;
+    display:flex;
+    justify-content:space-around;
+    align-items: center; 
+}
+
+.purple{
+    background: #8A82CC;
+    border-radius: 5px;
+    padding:6px 29px;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.orange{
+    background: #FFA782;
+    border-radius: 5px;
+    padding:6px 29px;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.yellow{
+    background: #F5D105;
+    border-radius: 5px;
+    padding:6px 29px;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.blue{
+    background: #559AC8;
+    border-radius: 5px;
+    padding:6px 29px;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.nvm_popular_area>span{
+    font-size: 18px;
+    color: #000000;
+    text-align:left;
+}
+
+.nvm_content{
+    padding-top:8%;
+    height: 73%;
+    display:flex;
+    justify-content:space-between;
+    flex-direction:column;
+    align-items:center;
+}
+
+.bottom{
+    display:flex;
+    justify-content:center;
+    align-items:center; 
+    margin:0 auto;
+    width: 1024px;
+    height: 90px;
+    background-color: #559AC8;
+}
+
+.icon{
+    display:flex;
+    justify-content:space-between;
+    align-items:center; 
+    flex-direction:column;
+}
+
+.kaohsiung_travel{
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.data_source{
+    font-size: 14px;
+    color: #FFD366;
+}
+
+.content{
+    margin:0 auto;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    width:1024px;
+}
+
+.content_box{
+    display:none;
+}
+
+.content_inner{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    flex-direction:column;
+    width:92%;
+}
+
+.content_block{
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+    align-items:flex-start;
+    flex-wrap:wrap;
+}
+
+.title{
+    margin-top:20px;
+    margin-bottom:50px;
+    font-size: 36px;
+    color: #8A82CC;
+}
+
+.block{
+    width:calc(100% / 2 - 1%);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.20);
+    margin-bottom: 10px;
+}
+
+.place_img{
+    background-repeat: no-repeat;
+    background-size:464px 155px;
+    width:100%;
+    height:155px;
+    display:flex;
+    align-items:flex-end;
+}
+
+.place_text{
+    margin-bottom: 12px;
+    margin-left: 12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    width:418px;
+    height:24px;
+}
+
+.place_name{
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.area_name{
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.block_content{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    width:464px;
+    margin:5px;
+}
+
+.block_left_content{
+    display:flex;
+    margin-left:3%;
+    justify-content:space-evenly;
+    flex-direction:column;
+}
+
+.block_right_content{
+    margin-right:5%;
+    display:flex;
+    width:30%;
+    margin-top:80px;
+    justify-content:space-around;
+    align-items:center;
+}
+
+/*
+.block_left_content::after{
+    content: "\f0f9";
+    width:18px;
+    height:18px;
+    font-family: 'Font Awesome\ 5 Free';
+    background-image: url('../img/icons_clock.png');
+}
+*/
+
+.block_left_content>img+img{
+    margin-top: 20px;
+}
+
+.block_content>img{
+    width:18px;
+    height:18px;
+}
+
+.block_left_content>span{
+    width: 300px;
+    /* overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; */
+}
+
+.block_left_content>span+span{
+    margin-top: 20px;
+}
+
+.bottom_text{
+    font-size: 14px;
+    color: #4A4A4A;
+}
+
+.page_ul{
+    margin-top:30px;
+    margin-bottom:30px;
+    list-style:none;
+}
+
+.page_ul>li{
+    display:inline;
+}
