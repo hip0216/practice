@@ -3,6 +3,15 @@
     margin:0;
 }
 
+#error{
+    background-color:#e2e2d3;
+    font-size:40px;
+    margin-bottom: 15px;
+    border-style:double;
+    border-color:#000000;
+    border-radius:10px;
+}
+
 .top_wrap {
     width:790px;
     height:153px;
@@ -107,8 +116,9 @@
     height: 300px;
     display:flex;
     background-color:#424242;
-    justify-content: center;
+    justify-content:center;
     align-items:center;
+    flex-direction:column;
 }
 
 .nodata{
@@ -125,7 +135,6 @@
     display: flex;
     background-color:#e2e2d3;
 }
-
 .median_content{
     width: 624px;
     outline-width:48px;
@@ -155,6 +164,7 @@
     height: 62px;
     display: flex;
     margin-bottom: 16px;
+    justify-content:space-between;
     align-items:center;
     background-color:#FFFFFF;
     line-height:400%;
@@ -172,7 +182,7 @@
     height: 20px;
     width:473px;
     display:flex;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items:center;
 }
 
@@ -203,4 +213,21 @@
     filter:brightness(0%);
     width: 55px;
     height: 55px;
+}
+.set_button{
+    margin-bottom: 1200px;
+    font-size:18px;
+    width:60px;
+    height:60px;
+    background: #FFD366;
+    border-radius:50%;
+    border:0;
+}
+.delete_button{
+    margin-right: 30px;
+    font-size:18px;
+    width:50px;
+    height:30px;
+    background: #FFD366;
+    border:0;
 }

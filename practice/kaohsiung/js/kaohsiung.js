@@ -2,7 +2,7 @@ var data;
 var mapdata = {};
 var now_page;
 var content_length;
-var title;
+var title='all';
 
 function getdata() {
     $.ajax({
@@ -13,7 +13,9 @@ function getdata() {
 }
 
 function setData(data) {
+    mapdata['all']=[];
     for (var i = 0; i < data.length; i++) {
+        mapdata['all'].push({ Name: data[i].Name, "Picture": data[i].Picture1, Opentime: data[i].Opentime, Add: data[i].Add, Tel: data[i].Tel, Ticketinfo: data[i].Ticketinfo ,Zone:data[i].Zone});
         if (mapdata[data[i].Zone]) {
             mapdata[data[i].Zone].push({ Name: data[i].Name, "Picture": data[i].Picture1, Opentime: data[i].Opentime, Add: data[i].Add, Tel: data[i].Tel, Ticketinfo: data[i].Ticketinfo });
         }
@@ -23,13 +25,31 @@ function setData(data) {
         }
     }
 }
-
+function sortData(){
+    let dataLengthArray=[];
+    let innerObject={};
+    for(key in mapdata){
+        innerObject['name']=key;
+        innerObject['length']=mapdata[key].length
+        dataLengthArray.push(innerObject);
+        innerObject={};
+    }
+    dataLengthArray=dataLengthArray.sort(function(i,j){
+        return i.length>j.length?-1:1;
+    });
+    return dataLengthArray;
+}
 function setContent(select) {
-    if(select!=title){
+    if(title!=select || select=="all"){
         title=select;
-        $('.title').text(title);
-        now_page = 1;
+        if(title=='all'){
+            $('.title').text("所有資料");
+        }
+        else{
+            $('.title').text(title);
+        }
         content_length = mapdata[title].length;
+        now_page = 1;
         pageSet();
         blockContent();
         setPageColor();
@@ -46,8 +66,8 @@ function setPageColor(){
     $('.page_ul>li:nth-child('+(now_page+1)+')').css('color', 'rgba(73,73,73,0.50)');
 }
 function blockContent() {
-    var str = "";
-    var length;
+    let str = "";
+    let length;
     if (now_page == parseInt($('.page_ul>li:nth-last-child(2)').text().trim())) {
         length = content_length;
     }
@@ -55,12 +75,17 @@ function blockContent() {
         length = now_page * 8;
     }
     $(".content_block").html(str);
-    for (var i = (now_page - 1) * 8; i < length; i++) {
+    for (let i = (now_page - 1) * 8; i < length; i++) {
         str += "<div class='block'>";
         str += "<div id=" + i + " class='place_img'>";
         str += "<div class='place_text'>";
         str += "<span class='place_name'>" + mapdata[title][i]['Name'] + "</span>";
-        str += "<span class='area_name'>" + $('.title').text() + "</span>";
+        if(title=='all'){
+            str += "<span class='area_name'>" + mapdata[title][i]['Zone'] + "</span>";
+        }
+        else{
+            str += "<span class='area_name'>" + $('.title').text() + "</span>";
+        }
         str += "</div>";
         str += "</div>";
         str += "<div class='block_content'>";
@@ -86,11 +111,11 @@ function blockContent() {
     }
 }
 function setSelectArea() {
-    var str = "";
-    var i = 0;
+    let str = "";
     for (key in mapdata) {
-        str += "<option value=" + key + ">" + key + "</option>";
-        i++;
+        if(key!='all'){
+            str += "<option value=" + key + ">" + key + "</option>";
+        }
     }
     $('.nvm_select').append(str);
 }
@@ -103,6 +128,17 @@ function pageSet() {
     }
     str += "<li>next ></li>";
     $(".page_ul").html(str);
+}
+function setNvmArea(){
+    let dataLengthArray=sortData();
+    let str="";
+    let colorArray=['purple','orange','yellow','blue'];
+    for(let index=0;index<5;index++) {
+        if(index<5 && index>0){
+            str+="<span class="+colorArray[index-1]+">"+dataLengthArray[index].name+"</span>";
+        }
+    }
+    $(".nvm_area").html(str);
 }
 function changePage(e) {
     var select_page = e.target.textContent.trim();
@@ -128,25 +164,22 @@ function changePage(e) {
     }
     setPageColor();
 }
-function setTitle(val) {
-    title = val;
-}
 function init() {
     getdata();
     setData(data);
     setSelectArea();
+    setNvmArea();
+    setContent('all');
 }
 init();
-if (data) {
+if(data){
     $('.nvm_select').change(function () {
         let select=$('.nvm_select').val();
         setContent(select);
     }
     );
     $('.dotted_line div').click(function () {
-        if(title){
-            $('.content_box').slideToggle('slow');
-        }
+        $('.content_box').slideToggle('slow');
     }
     );
     $(".nvm_area").click(function (e) {
