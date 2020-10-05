@@ -112,6 +112,7 @@
 }
 
 .up{
+    margin:0 auto;
     width: 1024px;
     height: 300px;
     display:flex;
@@ -124,11 +125,13 @@
 .nodata{
     align-items:center;
     justify-content:center;
+    width: 500px;
     display:flex;
     font-size:32px;
 }
 
 .content{
+    margin:0 auto;
     width: 1024px;
     align-items:center;
     justify-content:center;
@@ -141,7 +144,8 @@
     display: flex;
     margin-top:48px;
     margin-bottom:74px;
-    align-content:space-between;
+    justify-content:center;
+    align-content:space-around;
     flex-direction:column;
 }
 
@@ -201,6 +205,7 @@
     color: #424242;
 }
 .bottom{
+    margin:0 auto;
     width: 1024px;
     height: 90px;
     background-color:#FFD366;
@@ -208,15 +213,14 @@
     align-items:center;
     justify-content:center;
 }
-
 .bottom_bmi_img{
     filter:brightness(0%);
     width: 55px;
     height: 55px;
 }
 .set_button{
-    margin-bottom: 1200px;
     font-size:18px;
+    margin-right: 550px;
     width:60px;
     height:60px;
     background: #FFD366;
