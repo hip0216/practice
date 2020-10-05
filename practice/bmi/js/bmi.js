@@ -108,8 +108,8 @@ function clickButton() {
         }
         else{
             buttonAnimatePlay=false;
-            $('#error').show(850);
-            $('#error').hide(850)
+            $('#error').fadeIn(850);
+            $('#error').hide(850);
             setTimeout(function(){
                 buttonAnimatePlay=true;
             },1000)
@@ -148,10 +148,10 @@ function button_show(bmi,color,span_text){
     $('.submit_button_icon').css({
         'background-color':color
     });
+    $('.span_text').text(span_text);
     $('.submit_button_innertext').show(850);
     $('.span_text').show(850);
     $('.submit_button_icon').show(850);
-    $('.span_text').text(span_text);
     input_height.val("");
     input_weight.val("");
 }
