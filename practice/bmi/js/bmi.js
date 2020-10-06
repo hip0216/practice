@@ -1,10 +1,10 @@
-var input_height = $("#input_height");
+var inputHeight = $("#input_height");
 var input_weight = $("#input_weight");
 var input_data=localStorage.getItem("input_data")?JSON.parse(localStorage.getItem("input_data")):[];
-var check_input_status=true;
+var checkInput_status=true;
 var input_data_length=input_data.length;
 var buttonAnimatePlay=true;
-function li_format(object_data,index) {
+function liFormat(object_data,index,status) {
     let str="";
     str+="<li id=li"+index+"><span id='span_style"+index+"'></span>";
     str+="<span class='span_big_text'>"+object_data.span_name+"</span>";
@@ -14,24 +14,36 @@ function li_format(object_data,index) {
     str+="<div><span class='span_small_text'>"+object_data.date+"</span></div>";
     str+="<input type='button' value='清除' id="+index+" class='delete_button'></li>";
     $('#content-box').append(str);
+    if(status){
+        $('#li'+index).hide();
+        $('#li'+index).show(850);
+    }
     let span_style=$("#span_style"+index);
     spanStyle(span_style,object_data.color);
 }
 
-function no_data(){
+function noData(){
     $("#content-box").html("");
     $("#content-box").append("<li class=nodata>目前尚無資料</li>");
 }
 
-function print_input_data(){
+function printInputData(status){
     if(input_data_length>0){
+        let second=0;
         $('#content-box').html("");
-        for(var i=0;i<input_data.length;i++){
-            li_format(input_data[i],i);
+        for(let i=0;i<input_data.length;i++){
+            if(status){
+                setTimeout(function(){
+                    liFormat(input_data[i],i,status);
+                },second+=300)
+            }
+            else{
+                liFormat(input_data[i],i,status);
+            }
         }
     }
     else{
-        no_data();
+        noData();
     }
 }
 
@@ -42,11 +54,11 @@ function spanStyle(span_style,color) {
     $('#content-box>li>div:last-of-type').css('margin-right','50px');
 }
 
-function check_input(height,weight){
+function checkInput(height,weight){
     let check_user_input_preg=/^[1-9]{1}\d{0,2}(\.\d{0,2}[1-9]{1})?$/;
     if(height!=null && weight!=null){
         if(height.search(check_user_input_preg) || weight.search(check_user_input_preg)){
-            input_height.val("");
+            inputHeight.val("");
             input_weight.val("");
         }
         else{
@@ -87,10 +99,10 @@ function get_today(){
 
 function clickButton() {
     if(buttonAnimatePlay){
-        let check=false;
-        let height_cm = input_height.val();
+        let check=true;
+        let height_cm = inputHeight.val();
         let weight_kg = input_weight.val();
-        check=check_input(height_cm,weight_kg);
+        check=checkInput(height_cm,weight_kg);
         if(check){
             if(input_data_length==0){
                 $("#content-box").html("");
@@ -102,7 +114,7 @@ function clickButton() {
             input_data.push(object_data);
             localStorage.setItem("input_data",JSON.stringify(input_data));
             button_show(bmi,span[1],span[0]);
-            li_format(object_data,input_data_length);
+            liFormat(object_data,input_data_length,true);
             input_data_length++;
             setTimeout(button_hide,1500);
         }
@@ -152,7 +164,7 @@ function button_show(bmi,color,span_text){
     $('.submit_button_innertext').show(850);
     $('.span_text').show(850);
     $('.submit_button_icon').show(850);
-    input_height.val("");
+    inputHeight.val("");
     input_weight.val("");
 }
 
@@ -161,7 +173,7 @@ function init(){
     $('.span_text').hide();
     $('.submit_button_icon').hide();
     $('#error').hide();
-    print_input_data();
+    printInputData(true);
 }
 
 init();
@@ -171,9 +183,12 @@ $('#content-box').click(function(event){
         input_data.splice(event.target.id,1);
         localStorage.setItem("input_data",JSON.stringify(input_data));
         input_data_length--;
-        print_input_data();
+        $('#li'+event.target.id).hide(850);
+        setTimeout(function() {
+            printInputData(false);
+        },1000);
         if(input_data_length==0){
-            no_data();
+            setTimeout(noData,1000);
         }
     }
 });

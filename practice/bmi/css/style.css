@@ -139,7 +139,7 @@
     background-color:#e2e2d3;
 }
 .median_content{
-    width: 624px;
+    width: 824px;
     outline-width:48px;
     display: flex;
     margin-top:48px;
@@ -164,7 +164,7 @@
 }
 
 .median_content> div:nth-child(2)>ul>li{
-    width: 624px;
+    width: 824px;
     height: 62px;
     display: flex;
     margin-bottom: 16px;
