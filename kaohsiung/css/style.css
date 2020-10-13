@@ -246,16 +246,6 @@
     align-items:center;
 }
 
-/*
-.block_left_content::after{
-    content: "\f0f9";
-    width:18px;
-    height:18px;
-    font-family: 'Font Awesome\ 5 Free';
-    background-image: url('../img/icons_clock.png');
-}
-*/
-
 .block_left_content>img+img{
     margin-top: 20px;
 }
@@ -267,9 +257,6 @@
 
 .block_left_content>span{
     width: 300px;
-    /* overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; */
 }
 
 .block_left_content>span+span{

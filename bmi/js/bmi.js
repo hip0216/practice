@@ -1,9 +1,7 @@
-var inputHeight = $("#input_height");
-var input_weight = $("#input_weight");
-var input_data=localStorage.getItem("input_data")?JSON.parse(localStorage.getItem("input_data")):[];
-var checkInput_status=true;
-var input_data_length=input_data.length;
-var buttonAnimatePlay=true;
+let input_data=localStorage.getItem("input_data")?JSON.parse(localStorage.getItem("input_data")):[];
+let checkInput_status=true;
+let input_data_length=input_data.length;
+let buttonAnimatePlay=true;
 function liFormat(object_data,index,status) {
     let str="";
     str+="<li id=li"+index+"><span id='span_style"+index+"'></span>";
@@ -35,7 +33,8 @@ function printInputData(status){
             if(status){
                 setTimeout(function(){
                     liFormat(input_data[i],i,status);
-                },second+=300)
+                },second);
+                second+=250;
             }
             else{
                 liFormat(input_data[i],i,status);
@@ -45,6 +44,9 @@ function printInputData(status){
     else{
         noData();
     }
+    setTimeout(function(){ 
+        buttonAnimatePlay=true;
+    },500);
 }
 
 function spanStyle(span_style,color) {
@@ -58,8 +60,8 @@ function checkInput(height,weight){
     let check_user_input_preg=/^[1-9]{1}\d{0,2}(\.\d{0,2}[1-9]{1})?$/;
     if(height!=null && weight!=null){
         if(height.search(check_user_input_preg) || weight.search(check_user_input_preg)){
-            inputHeight.val("");
-            input_weight.val("");
+            $("#input_height").val("");
+            $("#input_weight").val("");
         }
         else{
             return true;
@@ -100,8 +102,8 @@ function get_today(){
 function clickButton() {
     if(buttonAnimatePlay){
         let check=true;
-        let height_cm = inputHeight.val();
-        let weight_kg = input_weight.val();
+        let height_cm = $("#input_height").val();
+        let weight_kg = $("#input_weight").val();
         check=checkInput(height_cm,weight_kg);
         if(check){
             if(input_data_length==0){
@@ -117,6 +119,9 @@ function clickButton() {
             liFormat(object_data,input_data_length,true);
             input_data_length++;
             setTimeout(button_hide,1500);
+            setTimeout(function(){
+                buttonAnimatePlay=true;
+            },2500);
         }
         else{
             buttonAnimatePlay=false;
@@ -139,9 +144,6 @@ function button_hide() {
         'color':"#424242",
         'background':'#FFD366',
     });
-    setTimeout(function(){
-        buttonAnimatePlay=true;
-    },1000);
 }
 
 function button_show(bmi,color,span_text){
@@ -164,8 +166,8 @@ function button_show(bmi,color,span_text){
     $('.submit_button_innertext').show(850);
     $('.span_text').show(850);
     $('.submit_button_icon').show(850);
-    inputHeight.val("");
-    input_weight.val("");
+    $("#input_height").val("");
+    $("#input_weight").val("");
 }
 
 function init(){
@@ -179,16 +181,17 @@ function init(){
 init();
 $(".div_submit_button").click(clickButton);
 $('#content-box').click(function(event){
-    if(event.target.localName=="input"){
+    if(event.target.localName=="input" && buttonAnimatePlay){
+        buttonAnimatePlay=false;
         input_data.splice(event.target.id,1);
         localStorage.setItem("input_data",JSON.stringify(input_data));
         input_data_length--;
         $('#li'+event.target.id).hide(850);
         setTimeout(function() {
             printInputData(false);
-        },1000);
+        },500);
         if(input_data_length==0){
-            setTimeout(noData,1000);
+            setTimeout(noData,1500);
         }
     }
 });
@@ -198,3 +201,8 @@ $(".div_submit_button").mouseover(function(){
 $(".div_submit_button").mouseleave(function(){
     $(".submit_button").css('box-shadow','');
 });
+$("body").keypress(function(event){
+    if(event.originalEvent.key=="Enter"){
+        clickButton();
+    }
+})

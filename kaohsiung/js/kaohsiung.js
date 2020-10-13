@@ -1,8 +1,8 @@
-var data;
-var mapdata = {};
-var now_page;
-var content_length;
-var title='all';
+let data;
+let mapdata = {};
+let now_page;
+let content_length;
+let title='all';
 
 function getdata() {
     $.ajax({
@@ -14,7 +14,7 @@ function getdata() {
 
 function setData(data) {
     mapdata['all']=[];
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         mapdata['all'].push({ Name: data[i].Name, "Picture": data[i].Picture1, Opentime: data[i].Opentime, Add: data[i].Add, Tel: data[i].Tel, Ticketinfo: data[i].Ticketinfo ,Zone:data[i].Zone});
         if (mapdata[data[i].Zone]) {
             mapdata[data[i].Zone].push({ Name: data[i].Name, "Picture": data[i].Picture1, Opentime: data[i].Opentime, Add: data[i].Add, Tel: data[i].Tel, Ticketinfo: data[i].Ticketinfo });
@@ -121,9 +121,9 @@ function setSelectArea() {
 }
 
 function pageSet() {
-    var total_page = Math.ceil(content_length / 8);
-    var str = "<li>< prev</li>";
-    for (var i = 1; i <= total_page; i++) {
+    let total_page = Math.ceil(content_length / 8);
+    let str = "<li>< prev</li>";
+    for (let i = 1; i <= total_page; i++) {
         str += "<li> " + i + " </li>";
     }
     str += "<li>next ></li>";
@@ -141,7 +141,7 @@ function setNvmArea(){
     $(".nvm_area").html(str);
 }
 function changePage(e) {
-    var select_page = e.target.textContent.trim();
+    let select_page = e.target.textContent.trim();
     switch (select_page) {
         case now_page:
             break;
